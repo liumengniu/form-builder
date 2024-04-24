@@ -133,6 +133,9 @@ function Builder() {
 	 */
 	const handleItemClick = idx =>{
 		setClickItemIdx(idx)
+		if (!_.isNumber(clickItemIdx)) return
+		const values = _.get(data, `${clickItemIdx}`);
+		form.setFieldsValue({...values})
 	}
 	
 	/**
