@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
+/*@import '~antd/dist/antd.less';*/
+/*---------项目整体样式在此处-------------*/
+.layout-wrap{
+	background: rgba(0, 0, 0, 0.85);
+}
+/*-----------------布局样式在此处--------------*/
+.layout-header{
+	height: 64px;
+	line-height: 64px;
+	display: flex;
+	flex-direction: row;
+	background: #fff;
+	text-align: right;
+}
+.layout-side{
+	height: calc(100vh - 64px);
+	overflow-y: auto;
+	position: fixed;
+	left: 0;
+}
+.layout-main{
+	padding: 10px;
+	box-sizing: border-box;
+	height: calc(100vh - 64px);
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.layout-main-container{
+	padding: 10px;
+	box-sizing: border-box;
+	background-color: white;
+	height: calc(100vh - 84px);
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*-----------------antd的适配写在此处------------------------*/
+.ant-layout-header {
+	padding: 0 !important;
+	background-color: white !important;
+}
+.ant-layout,.ant-layout-has-sider{
+	height: calc(100vh);
+}
+.ant-layout-sider{
+	background: #29374C !important;
+}
+.ant-menu.ant-menu-dark, .ant-menu-dark{
+	background: #29374C !important;
+}
+.ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub{
+	background: #212E40;
+}
+.ant-layout-sider-children{
+	height: auto;
+}
+/*滚动条样式*/
+.ant-layout-sider::-webkit-scrollbar{
+	width: 6px;
+	height: 6px;
+}
+.ant-layout-sider::-webkit-scrollbar-track{
+	background: #999;
+	border-radius:2px;
+}
+.ant-layout-sider::-webkit-scrollbar-thumb{
+	background: hsla(0,0%,100%,.2);
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 5px hsl(0deg 0% 100% / 5%);
+}
+.ant-layout-sider::-webkit-scrollbar-thumb:hover{
+	background: hsla(0,0%,100%,.15);
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 5px rgb(37 37 37 / 5%);
+}
+.ant-layout-sider::-webkit-scrollbar-corner{
+	background: #179a16;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

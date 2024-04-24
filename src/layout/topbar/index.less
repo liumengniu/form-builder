@@ -1,0 +1,38 @@
+@import '~@/styles/variables.less';
+
+.HeaderMain{
+	width: 100%;
+	padding: 0 20px 0 0;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+
+	& .HeaderLeft{
+		width: 200px;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		& :hover{
+			color: @primary-color
+		}
+		& >span:last-child{
+			vertical-align: middle;
+			margin-left: 10%;
+			font-size: 16px;
+			font-weight: 500;
+		}
+	}
+
+	& .HeaderMiddle{
+		flex: 1;
+	}
+
+	& .HeaderRight{
+		& span{
+			vertical-align: middle;
+		}
+	}
+}
