@@ -16,6 +16,7 @@ import {
 import Home from "@views/home";
 import Builder from "@views/builder";
 import Schema from "@views/schema";
+import Sample from "@views/sample";
 
 const routers = [
 	{
@@ -36,6 +37,12 @@ const routers = [
 		path: "/schema",
 		icon: <RollbackOutlined />,
 		element: <Schema />
+	},
+	{
+		label: "schema示例",
+		path: "/sample",
+		icon: <RollbackOutlined />,
+		element: <Sample />
 	},
 ]
 

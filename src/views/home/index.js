@@ -10,21 +10,24 @@ function Home() {
 	const navigate = useNavigate();
 	
 	/**
-	 * 编辑界面
-	 * @type {{navigate(), "/builder"}}
+	 * 路由界面
+	 * @param url
 	 */
-	const navToBuilder = () => {
-		navigate("/builder")
+	const navToRouter = url => {
+		navigate(url)
 	}
 	
 	return (
 		<>
 			<Space>
-				<Card hoverable style={{width: 300}} onClick={navToBuilder}>
+				<Card hoverable style={{width: 300}} onClick={() => navToRouter("/builder")}>
 					<p>生成器</p>
 				</Card>
-				<Card hoverable style={{width: 300}}>
+				<Card hoverable style={{width: 300}} onClick={() => navToRouter("/schema")}>
 					<p>Schema说明</p>
+				</Card>
+				<Card hoverable style={{width: 300}} onClick={() => navToRouter("/sample")}>
+					<p>Schema示例</p>
 				</Card>
 			</Space>
 		</>
