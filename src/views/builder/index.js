@@ -1,5 +1,5 @@
 import _ from "lodash";
-import {Button, Collapse, FloatButton, Form, Input, Modal, Space, Tabs, Tooltip} from "antd";
+import {Button, Collapse, Drawer, FloatButton, Form, Input, Modal, Space, Tabs, Tooltip} from "antd";
 import {useState} from "react";
 import optionType from "@/configs/optionType";
 import {
@@ -19,6 +19,8 @@ import {
 import BasicComponent from "@comp/modules/BasicModule";
 import "./index.less"
 import mockData from "@/configs/mock";
+import JSONInput from 'react-json-editor-ajrm';
+import locale    from 'react-json-editor-ajrm/locale/en';
 
 
 const items = [
@@ -45,6 +47,8 @@ function Builder() {
 	const [clickItemIdx, setClickItemIdx] = useState(null)
 	// 配置表单
 	const [form] = Form.useForm();
+	// schema显示
+	const [open, setOpen] = useState(false);
 
 	
 	/**
@@ -200,10 +204,11 @@ function Builder() {
 	 * 显示schema数据
 	 */
 	const showSchema = () => {
-		Modal.info({
-			title: '查询scheme',
-			content: (<div>{JSON.stringify(data)}</div>),
-		});
+		// Modal.info({
+		// 	title: '查询scheme',
+		// 	content: (<pre>{JSON.stringify(data)}</pre>),
+		// });
+		setOpen(true)
 	}
 	/**
 	 * 配置数据更新
@@ -402,6 +407,15 @@ function Builder() {
 					
 				</div>
 			</div>
+			<Drawer title="生成的schema" open={open}>
+				<JSONInput
+					id          = 'a_unique_id'
+					placeholder = { data }
+					locale      = { locale }
+					height      = '550px'
+					width = '100%'
+				/>
+			</Drawer>
 		</div>
 	)
 }
