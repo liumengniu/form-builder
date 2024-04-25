@@ -1,11 +1,14 @@
 import _ from "lodash";
-import {Form, Input, Modal, Tabs} from "antd";
+import {Button, Collapse, Form, Input, Modal, Space, Tabs} from "antd";
 import {useState} from "react";
 import optionType from "@/configs/optionType";
 import {
 	HeartTwoTone,
 	GroupOutlined,
 	StarOutlined,
+	MinusCircleOutlined,
+	PlusOutlined,
+	DownOutlined
 } from '@ant-design/icons';
 
 import BasicComponent from "@comp/modules/BasicModule";
@@ -208,6 +211,7 @@ function Builder() {
 	 * @param allValues
 	 */
 	const onValuesChange = (changedValues, allValues) => {
+		console.log(changedValues, '999999999999999999', allValues)
 		if (!_.isNumber(clickItemIdx)) return
 		let oldObj = _.get(data, `${clickItemIdx}`);
 		let finalObj = _.assign({},oldObj, changedValues);
@@ -318,6 +322,66 @@ function Builder() {
 						<Form.Item label="提示文案" name="placeholder">
 							<Input/>
 						</Form.Item>
+						{
+							!_.isEmpty(data?.[clickItemIdx]?.options) && <Collapse
+								collapsible="header"
+								defaultActiveKey={['1']}
+								items={[
+									{
+										key: '1',
+										label: '选项配置',
+										extra: <DownOutlined />,
+										children: <Form.List label="选项列表" name="options">
+											{(fields, { add, remove }) => (
+												<>
+													{fields.map(({ key, name, ...restField }) => (
+														<Space
+															key={key}
+															style={{
+																display: 'flex',
+																marginBottom: 8,
+															}}
+															align="baseline"
+														>
+															<Form.Item
+																{...restField}
+																name={[name, 'label']}
+																rules={[
+																	{
+																		required: true,
+																		message: '请填写选项标题',
+																	},
+																]}
+															>
+																<Input placeholder="选项标题" />
+															</Form.Item>
+															<Form.Item
+																{...restField}
+																name={[name, 'value']}
+																rules={[
+																	{
+																		required: true,
+																		message: '请填写选项值',
+																	},
+																]}
+															>
+																<Input placeholder="选项值" />
+															</Form.Item>
+															<MinusCircleOutlined onClick={() => remove(name)} />
+														</Space>
+													))}
+													<Form.Item>
+														<Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+															添加项
+														</Button>
+													</Form.Item>
+												</>
+											)}
+										</Form.List>,
+									},
+								]}
+							/>
+						}
 					</Form>
 				</div>
 			</div>
