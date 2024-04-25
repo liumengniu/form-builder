@@ -407,13 +407,13 @@ function Builder() {
 					
 				</div>
 			</div>
-			<Drawer title="生成的schema" open={open}>
+			<Drawer title="生成的schema" onClose={()=>setOpen(false)} open={open} size="large">
 				<JSONInput
 					id          = 'a_unique_id'
 					placeholder = { data }
 					locale      = { locale }
-					height      = '550px'
-					width = '100%'
+					height= "100%"
+					width="100%"
 				/>
 			</Drawer>
 		</div>
