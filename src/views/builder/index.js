@@ -204,12 +204,27 @@ function Builder() {
 	 * 显示schema数据
 	 */
 	const showSchema = () => {
-		// Modal.info({
-		// 	title: '查询scheme',
-		// 	content: (<pre>{JSON.stringify(data)}</pre>),
-		// });
 		setOpen(true)
 	}
+	/**
+	 * 复制item
+	 */
+	const copyItem = () =>{
+		if (!_.isNumber(clickItemIdx)) return
+		let lastItem = _.last(data);
+		setData([...data, lastItem])
+	}
+	
+	/**
+	 * 上移
+	 */
+	const moveUp = () =>{}
+	
+	/**
+	 * 下移
+	 */
+	const moveDown = () =>{}
+	
 	/**
 	 * 配置数据更新
 	 * @param changedValues
@@ -311,9 +326,9 @@ function Builder() {
 							<EyeOutlined onClick={showSchema}/>
 						</Tooltip>
 						<Tooltip placement="left" title="复制">
-							<FileTextOutlined />
+							<FileTextOutlined onClick={copyItem}/>
 						</Tooltip>
-						<Tooltip placement="left" title="上移">
+						<Tooltip placement="left" onClick={moveUp} title="上移">
 							<ArrowUpOutlined />
 						</Tooltip>
 						<Tooltip placement="left" title="下移">
