@@ -45,7 +45,7 @@ function BasicComponent(props) {
 	
 	return (
 		<div className="item-content">
-			<Form.Item label={label} name={name} initialValue={defaultValue} placeholder={placeholder}>
+			<Form.Item label={label} name={name} initialValue={defaultValue || ''} placeholder={placeholder}>
 				<ExhibitComponent/>
 			</Form.Item>
 		</div>

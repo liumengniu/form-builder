@@ -218,12 +218,24 @@ function Builder() {
 	/**
 	 * 上移
 	 */
-	const moveUp = () =>{}
+	const moveUp = () => {
+		if (!_.isNumber(clickItemIdx)) return
+		if (clickItemIdx === 0) return
+		let tarIdx = clickItemIdx - 1;
+		data.splice(clickItemIdx, 1, ...data.splice(tarIdx, 1, data[clickItemIdx]))
+		setData([...data])
+	}
 	
 	/**
 	 * 下移
 	 */
-	const moveDown = () =>{}
+	const moveDown = () =>{
+		if (!_.isNumber(clickItemIdx)) return
+		if (clickItemIdx === data.length - 1) return
+		let tarIdx = clickItemIdx + 1;
+		data.splice(clickItemIdx, 1, ...data.splice(tarIdx, 1, data[clickItemIdx]))
+		setData([...data])
+	}
 	
 	/**
 	 * 配置数据更新
@@ -331,7 +343,7 @@ function Builder() {
 						<Tooltip placement="left" onClick={moveUp} title="上移">
 							<ArrowUpOutlined />
 						</Tooltip>
-						<Tooltip placement="left" title="下移">
+						<Tooltip placement="left" onClick={moveDown} title="下移">
 							<ArrowDownOutlined />
 						</Tooltip>
 						<Tooltip placement="left" title="删除">
