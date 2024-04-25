@@ -231,10 +231,32 @@
 	}
 	//配置模块
 	&-setting{
-		//float: right;
-		text-align: center;
-		//max-width: 300px;
-		padding: 0 20px;
+		padding-right: 20px;
 		box-sizing: border-box;
+		display: flex;
+
+
+		&-options{
+			padding-top:50px;
+			box-sizing: border-box;
+			border-right: 1px dashed #c2c8d1;
+			display: flex;
+			flex-direction: column;
+			>span{
+				padding:0 20px;
+				box-sizing: border-box;
+				display: block;
+				min-height: 50px;
+				line-height: 50px;
+				cursor: pointer;
+				&:hover{
+					background-color: #c2c8d1;
+				}
+			}
+		}
+		>div:last-child{
+			padding-left: 10px;
+			box-sizing: border-box;
+		}
 	}
 }

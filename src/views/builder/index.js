@@ -8,7 +8,10 @@ import {
 	StarOutlined,
 	MinusCircleOutlined,
 	PlusOutlined,
-	DownOutlined
+	DownOutlined,
+	ArrowDownOutlined,
+	ArrowUpOutlined,
+	DeleteOutlined
 } from '@ant-design/icons';
 
 import BasicComponent from "@comp/modules/BasicModule";
@@ -304,85 +307,93 @@ function Builder() {
 				</div>
 				{/*配置区域*/}
 				<div className="auto-form-setting">
-					<Tabs defaultActiveKey="1" items={items}/>
-					<Form
-						form={form}
-						labelCol={{span: 6}}
-						onValuesChange={onValuesChange}
-					>
-						<Form.Item label="标题" name="label">
-							<Input/>
-						</Form.Item>
-						<Form.Item label="字段名" name="name">
-							<Input/>
-						</Form.Item>
-						<Form.Item label="默认值" name="defaultValue">
-							<Input/>
-						</Form.Item>
-						<Form.Item label="提示文案" name="placeholder">
-							<Input/>
-						</Form.Item>
-						{
-							!_.isEmpty(data?.[clickItemIdx]?.options) && <Collapse
-								collapsible="header"
-								defaultActiveKey={['1']}
-								items={[
-									{
-										key: '1',
-										label: '选项配置',
-										extra: <DownOutlined />,
-										children: <Form.List label="选项列表" name="options">
-											{(fields, { add, remove }) => (
-												<>
-													{fields.map(({ key, name, ...restField }) => (
-														<Space
-															key={key}
-															style={{
-																display: 'flex',
-																marginBottom: 8,
-															}}
-															align="baseline"
-														>
-															<Form.Item
-																{...restField}
-																name={[name, 'label']}
-																rules={[
-																	{
-																		required: true,
-																		message: '请填写选项标题',
-																	},
-																]}
+					<div className="auto-form-setting-options">
+						<ArrowUpOutlined />
+						<ArrowDownOutlined />
+						<DeleteOutlined />
+					</div>
+					<div>
+						<Tabs defaultActiveKey="1" items={items}/>
+						<Form
+							form={form}
+							labelCol={{span: 6}}
+							onValuesChange={onValuesChange}
+						>
+							<Form.Item label="标题" name="label">
+								<Input/>
+							</Form.Item>
+							<Form.Item label="字段名" name="name">
+								<Input/>
+							</Form.Item>
+							<Form.Item label="默认值" name="defaultValue">
+								<Input/>
+							</Form.Item>
+							<Form.Item label="提示文案" name="placeholder">
+								<Input/>
+							</Form.Item>
+							{
+								!_.isEmpty(data?.[clickItemIdx]?.options) && <Collapse
+									collapsible="header"
+									defaultActiveKey={['1']}
+									items={[
+										{
+											key: '1',
+											label: '选项配置',
+											extra: <DownOutlined />,
+											children: <Form.List label="选项列表" name="options">
+												{(fields, { add, remove }) => (
+													<>
+														{fields.map(({ key, name, ...restField }) => (
+															<Space
+																key={key}
+																style={{
+																	display: 'flex',
+																	marginBottom: 8,
+																}}
+																align="baseline"
 															>
-																<Input placeholder="选项标题" />
-															</Form.Item>
-															<Form.Item
-																{...restField}
-																name={[name, 'value']}
-																rules={[
-																	{
-																		required: true,
-																		message: '请填写选项值',
-																	},
-																]}
-															>
-																<Input placeholder="选项值" />
-															</Form.Item>
-															<MinusCircleOutlined onClick={() => remove(name)} />
-														</Space>
-													))}
-													<Form.Item>
-														<Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-															添加项
-														</Button>
-													</Form.Item>
-												</>
-											)}
-										</Form.List>,
-									},
-								]}
-							/>
-						}
-					</Form>
+																<Form.Item
+																	{...restField}
+																	name={[name, 'label']}
+																	rules={[
+																		{
+																			required: true,
+																			message: '请填写选项标题',
+																		},
+																	]}
+																>
+																	<Input placeholder="选项标题" />
+																</Form.Item>
+																<Form.Item
+																	{...restField}
+																	name={[name, 'value']}
+																	rules={[
+																		{
+																			required: true,
+																			message: '请填写选项值',
+																		},
+																	]}
+																>
+																	<Input placeholder="选项值" />
+																</Form.Item>
+																<MinusCircleOutlined onClick={() => remove(name)} />
+															</Space>
+														))}
+														<Form.Item>
+															<Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+																添加项
+															</Button>
+														</Form.Item>
+													</>
+												)}
+											</Form.List>,
+										},
+									]}
+								/>
+							}
+						</Form>
+					</div>
+					
 				</div>
 			</div>
 		</div>

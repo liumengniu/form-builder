@@ -1,5 +1,5 @@
 import { Avatar, Dropdown, Menu } from "antd"
-import logo2 from "@/statics/images/common/logo2.png"
+import logo from "@/statics/images/common/logo.png"
 import React, { useState } from "react"
 
 /**
@@ -64,8 +64,8 @@ function TopBar() {
 	return (
 		<div className="HeaderMain">
 			<div className="HeaderLeft" onClick={navToHome}>
-				<Avatar shape="square" src={logo2} />
-				<span>Uniapp Builder</span>
+				<Avatar shape="square" src={logo} style={{width: 60, height: 60}}/>
+				<span>Form Builder</span>
 			</div>
 			<div className="HeaderMiddle">{AppConfig.mode === "top" && <Menu onSelect={onSelect} mode="horizontal" items={RouterManager.getItems(routers)} />}</div>
 			<div className="HeaderRight">

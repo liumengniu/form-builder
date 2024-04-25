@@ -28,8 +28,8 @@ function Login({ className }) {
 	return (
 		<div className={className}>
 			<div className={"box"}>
-				<div className={"title"}>Uniapp Builder</div>
-				<div className={"subTitle"}>Uniapp Builder - x</div>
+				<div className={"title"}>Form Builder</div>
+				<div className={"subTitle"}>Form Builder - x</div>
 				<Form name="normal_login" className="login-form" onFinish={onFinish} onValuesChange={onValuesChange}>
 					<Form.Item name="userName" initialValue={"admin"} rules={[{ required: true, message: "请输入用户名" }]}>
 						<Input
