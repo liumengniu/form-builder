@@ -1,5 +1,5 @@
 import _ from "lodash";
-import {Button, Collapse, Form, Input, Modal, Space, Tabs} from "antd";
+import {Button, Collapse, FloatButton, Form, Input, Modal, Space, Tabs, Tooltip} from "antd";
 import {useState} from "react";
 import optionType from "@/configs/optionType";
 import {
@@ -11,14 +11,12 @@ import {
 	DownOutlined,
 	ArrowDownOutlined,
 	ArrowUpOutlined,
-	DeleteOutlined
+	DeleteOutlined,
+	FileTextOutlined,
+	EyeOutlined
 } from '@ant-design/icons';
 
 import BasicComponent from "@comp/modules/BasicModule";
-import RadioModule from "@comp/modules/RadioModule";
-import UserModule from "@comp/modules/UserModule";
-import UploadModule from "@comp/modules/UploadModule";
-import SignatureModule from "@comp/modules/SignatureModule";
 import "./index.less"
 import mockData from "@/configs/mock";
 
@@ -190,12 +188,11 @@ function Builder() {
 	}
 	
 	/**
-	 * 移除当前组件
-	 * @param e
-	 * @param idx
+	 * 移除当前展示组件
 	 */
-	const removeItem = (e, idx) => {
-		let newData = _.filter(data, (o, index) => idx !== index)
+	const removeItem = () => {
+		if (!_.isNumber(clickItemIdx)) return
+		let newData = _.filter(data, (o, index) => clickItemIdx !== index)
 		setData([...newData])
 	}
 	
@@ -205,7 +202,7 @@ function Builder() {
 	const showSchema = () => {
 		Modal.info({
 			title: '查询scheme',
-			content: (<div>{JSON.stringify({questionnaireTitle, questionnaireSubTitle, data})}</div>),
+			content: (<div>{JSON.stringify(data)}</div>),
 		});
 	}
 	/**
@@ -214,7 +211,6 @@ function Builder() {
 	 * @param allValues
 	 */
 	const onValuesChange = (changedValues, allValues) => {
-		console.log(changedValues, '999999999999999999', allValues)
 		if (!_.isNumber(clickItemIdx)) return
 		let oldObj = _.get(data, `${clickItemIdx}`);
 		let finalObj = _.assign({},oldObj, changedValues);
@@ -294,9 +290,7 @@ function Builder() {
 											     onDragStart={e => handleItemDragStart(e, idx, item)} onDragEnd={handleItemDragEnd}
 											     onDragEnter={() => handleItemDragEnter(idx)} onDrop={handleItemDrop}
 											     onClick={() => handleItemClick(idx)}>
-												<BasicComponent handleTitle={e => handleTitle(e, idx)} idx={idx} label={item?.label}
-												                addChildItem={e => addChildItem(e, idx)}
-												                removeItem={e => removeItem(e, idx)} type={item?.type} item={item}/>
+												<BasicComponent idx={idx} item={item}/>
 											</div>
 										)
 									})
@@ -308,9 +302,21 @@ function Builder() {
 				{/*配置区域*/}
 				<div className="auto-form-setting">
 					<div className="auto-form-setting-options">
-						<ArrowUpOutlined />
-						<ArrowDownOutlined />
-						<DeleteOutlined />
+						<Tooltip placement="left" title="查看schema">
+							<EyeOutlined onClick={showSchema}/>
+						</Tooltip>
+						<Tooltip placement="left" title="复制">
+							<FileTextOutlined />
+						</Tooltip>
+						<Tooltip placement="left" title="上移">
+							<ArrowUpOutlined />
+						</Tooltip>
+						<Tooltip placement="left" title="下移">
+							<ArrowDownOutlined />
+						</Tooltip>
+						<Tooltip placement="left" title="删除">
+							<DeleteOutlined onClick={removeItem}/>
+						</Tooltip>
 					</div>
 					<div>
 						<Tabs defaultActiveKey="1" items={items}/>

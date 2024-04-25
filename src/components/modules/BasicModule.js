@@ -3,16 +3,14 @@
  * @author Kevin
  * @Date: 2024-4-11
  */
-import ItemTopic from "@comp/ItemTopic";
-import ItemOperate from "@comp/ItemOperate";
 import {Form, Radio, Checkbox, DatePicker, Input, InputNumber, Rate, Slider, Switch, TimePicker} from "antd";
 
 const CheckboxGroup = Checkbox.Group;
-const { TextArea } = Input
+const {TextArea} = Input
 
 function BasicComponent(props) {
-	const {type, label, handleTitle, addChildItem, removeItem, changedValues, item} = props
-	console.log(changedValues, '------------------------')
+	const {changedValues, item} = props
+	const {type, label, defaultValue, name, placeholder} = item;
 	
 	const ExhibitComponent = () => {
 		if (type === "radio") {
@@ -47,10 +45,9 @@ function BasicComponent(props) {
 	
 	return (
 		<div className="item-content">
-			<Form.Item label={label} name={item?.name} initialValue={item?.defaultValue} placeholder={item?.placeholder}>
+			<Form.Item label={label} name={name} initialValue={defaultValue} placeholder={placeholder}>
 				<ExhibitComponent/>
 			</Form.Item>
-			{/*<ItemOperate addChildItem={addChildItem} removeItem={removeItem}/>*/}
 		</div>
 	)
 }

@@ -7,7 +7,6 @@ import styled from "styled-components"
 import { Button, Checkbox, Form, Input } from "antd"
 import { UserOutlined, LockOutlined } from "@ant-design/icons"
 
-import loginLogo from "@statics/images/common/loginLogo.png"
 import loginBg from "@statics/images/common/loginBg.png"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
