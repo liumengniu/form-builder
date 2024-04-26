@@ -27,7 +27,7 @@
 }
 
 .layout-main-container{
-	padding: 10px;
+	padding: 6px;
 	box-sizing: border-box;
 	background-color: white;
 	height: calc(100vh - 84px);
