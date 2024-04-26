@@ -3,7 +3,21 @@
  * @author Kevin
  * @Date: 2024-4-11
  */
-import {Form, Radio, Checkbox, DatePicker, Input, InputNumber, Rate, Slider, Switch, TimePicker} from "antd";
+import {
+	Form,
+	Radio,
+	Checkbox,
+	DatePicker,
+	Input,
+	InputNumber,
+	Rate,
+	Slider,
+	Switch,
+	TimePicker,
+	Select,
+	Upload, Button
+} from "antd";
+import { UploadOutlined } from '@ant-design/icons';
 
 const CheckboxGroup = Checkbox.Group;
 const {TextArea} = Input
@@ -40,6 +54,14 @@ function BasicComponent(props) {
 			return <Slider defaultValue={30} disabled={true}/>
 		} else if (type === "switch") {
 			return <div><Switch defaultChecked/></div>
+		} else if (type === "select") {
+			return <Select options={item?.options}/>
+		} else if (type === "upload") {
+			return (
+				<Upload {...props}>
+					<Button icon={<UploadOutlined />}>点击上传</Button>
+				</Upload>
+			)
 		}
 	}
 	

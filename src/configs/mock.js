@@ -98,6 +98,28 @@ const mockData = {
 		defaultValue: "",
 		placeholder: "",
 	},
+	11: {
+		id: uuidV4(),
+		type: 'select',
+		label: "下拉框",
+		name: "",
+		defaultValue: "",
+		placeholder: "",
+		options: [
+			{id: 1, label: '唱', value: '唱'},
+			{id: 2, label: '跳', value: '跳'},
+			{id: 3, label: 'rap', value: 'rap'},
+			{id: 4, label: '篮球', value: '篮球'}
+		],
+	},
+	12: {
+		id: uuidV4(),
+		type: 'upload',
+		label: "上传组件",
+		name: "",
+		defaultValue: "",
+		placeholder: "",
+	},
 }
 
 export default mockData

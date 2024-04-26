@@ -1,5 +1,5 @@
 import _ from "lodash";
-import {Button, Collapse, Drawer, FloatButton, Form, Input, Modal, Space, Tabs, Tooltip} from "antd";
+import {Button, Collapse, Drawer, FloatButton, Form, Input, Modal, Select, Space, Tabs, Tooltip} from "antd";
 import {useState} from "react";
 import optionType from "@/configs/optionType";
 import {
@@ -257,7 +257,7 @@ function Builder() {
 				<div className="auto-form-options">
 					<div className="auto-form-options-basic">
 						<div className="auto-form-options-title">
-							基础元件
+							表单元件
 						</div>
 						<div className="auto-form-options-basic-box">
 							{
@@ -369,6 +369,11 @@ function Builder() {
 							<Form.Item label="提示文案" name="placeholder">
 								<Input/>
 							</Form.Item>
+							{
+								data?.[clickItemIdx]?.type === "select" && <Form.Item label="单选/多选" name="mode">
+									<Select options={[{label: "单选", value: "单选"}, {label: "多选", value: "multiple"}]}/>
+								</Form.Item>
+							}
 							{
 								!_.isEmpty(data?.[clickItemIdx]?.options) && <Collapse
 									collapsible="header"

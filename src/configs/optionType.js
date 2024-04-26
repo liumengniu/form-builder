@@ -17,7 +17,8 @@ const optionList = {
     { id: 8, label: '评分' },
 	  { id: 9, label: '滑块' },
 	  { id: 10, label: '开关' },
-
+	  { id: 11, label: '下拉选择' },
+	  { id: 12, label: '上传组件' },
   ],
   commonlyUsed: [
     // { id: 101, label: '姓名' },
