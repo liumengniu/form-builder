@@ -3,8 +3,8 @@
  * @Date: 2024-4-25
  */
 import "./index.less"
-import {Button, Form, Result, Space} from "antd";
-import locale from "react-json-editor-ajrm/locale/en";
+import {Form, Result} from "antd";
+import locale from 'react-json-editor-ajrm/locale/zh-cn';
 import JSONInput from "react-json-editor-ajrm";
 import _ from "lodash";
 import mockData from "@/configs/mock";
