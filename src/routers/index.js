@@ -17,6 +17,7 @@ import Home from "@views/home";
 import Builder from "@views/builder";
 import Schema from "@views/schema";
 import Sample from "@views/sample";
+import JsonEditor from "@views/json-editor";
 
 const routers = [
 	{
@@ -43,6 +44,12 @@ const routers = [
 		path: "/sample",
 		icon: <RollbackOutlined />,
 		element: <Sample />
+	},
+	{
+		label: "自带修复的json",
+		path: "/jsoneditor",
+		icon: <RollbackOutlined />,
+		element: <JsonEditor />
 	},
 ]
 

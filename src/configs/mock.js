@@ -7,6 +7,7 @@
 import {v4 as uuidV4} from 'uuid'
 
 const mockData = {
+	// 表单组件
 	1: {
 		id: uuidV4(),
 		type: 'radio',
@@ -128,6 +129,44 @@ const mockData = {
 		defaultValue: "",
 		placeholder: "",
 	},
+	
+	
+	// 常用表单
+	101:{
+		isTemplate: true,
+		id: uuidV4(),
+		type: 'loginForm',
+		label: "登录表单",
+		formOptions: [
+			{id: uuidV4(), type: 'input', label: "账号", defaultValue: "请输入账号"},
+			{id: uuidV4(), type: 'input', label: "密码", defaultValue: "请输入密码"},
+		]
+	},
+	102:{
+		isTemplate: true,
+		id: uuidV4(),
+		type: 'loginForm',
+		label: "个人信息",
+		formOptions: [
+			{id: uuidV4(), type: 'input', name: 'name', label: "用户名", defaultValue: "请输入用户名"},
+			{id: uuidV4(), type: 'input', name: 'email', label: "邮箱", defaultValue: "请输邮箱"},
+			{id: uuidV4(),
+				type: 'radio',
+				label: "性别",
+				options: [
+					{id: 1, label: '男', value: '男'},
+					{id: 2, label: '女', value: '女'},
+					{id: 3, label: '其他', value: '其他'}
+				],
+				name: "sex",
+				defaultValue: "",
+				placeholder: "",
+			},
+			{id: uuidV4(), type: 'input', label: "地址", name: "address", defaultValue: "", placeholder: "",},
+			{id: uuidV4(), type: 'input', label: "电话号码", name: "phone", defaultValue: "", placeholder: "",},
+			{id: uuidV4(), type: 'textarea', label: "兴趣爱好", name: "hobby", defaultValue: "", placeholder: "",},
+		]
+	}
 }
 
 export default mockData

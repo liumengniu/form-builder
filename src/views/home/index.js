@@ -29,6 +29,9 @@ function Home() {
 				<Card hoverable style={{width: 300}} onClick={() => navToRouter("/sample")}>
 					<p>Schema示例</p>
 				</Card>
+				<Card hoverable style={{width: 300}} onClick={() => navToRouter("/jsoneditor")}>
+					<p>JSON编辑器</p>
+				</Card>
 			</Space>
 		</>
 	)

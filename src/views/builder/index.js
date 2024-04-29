@@ -83,7 +83,11 @@ function Builder() {
 	 */
 	const addComponent = () => {
 		const data_item = mockData[dragCompId]
-		setData([...data, data_item])
+		if(!data_item.isTemplate) { //普通基础组件
+			setData([...data, data_item])
+		} else {
+			setData([...data, ..._.get(data_item, 'formOptions')])
+		}
 	}
 	
 	/**
@@ -274,7 +278,7 @@ function Builder() {
 					</div>
 					<div className="auto-form-options-basic">
 						{
-							!_.isEmpty(optionType?.commonlyUsed) && <div className="auto-form-options-title">个人信息</div>
+							!_.isEmpty(optionType?.commonlyUsed) && <div className="auto-form-options-title">常用表单模版</div>
 						}
 						<div className="auto-form-options-basic-box">
 							{

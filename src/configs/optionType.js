@@ -21,10 +21,8 @@ const optionList = {
 	  { id: 12, label: '上传组件' },
   ],
   commonlyUsed: [
-    // { id: 101, label: '姓名' },
-    // { id: 102, label: '性别' },
-	  // { id: 103, label: '手机号' },
-	  // { id: 104, label: '地址' }
+    { id: 101, label: '登录' },
+    { id: 102, label: '个人信息' },
   ],
   builtInTemplates: [
     // { id: 201, label: '年收入' },

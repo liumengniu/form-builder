@@ -11,7 +11,7 @@ function Schema() {
 	 * 数据源
 	 * @type {unknown[]}
 	 */
-	const data = _.values(mockData);
+	const data = _.filter(_.values(mockData), o=> !o.isTemplate);
 	
 	/**
 	 * columns

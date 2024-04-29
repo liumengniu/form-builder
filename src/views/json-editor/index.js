@@ -1,42 +1,66 @@
 /**
  * @author Kevin
- * @Date: 2024-4-25
+ * @Date: 2024-4-29
  */
+
 import "./index.less"
 import {Form, Result} from "antd";
-import locale from 'react-json-editor-ajrm/locale/zh-cn';
-import JSONInput from "react-json-editor-ajrm";
 import _ from "lodash";
 import mockData from "@/configs/mock";
 import BasicComponent from "@comp/modules/BasicModule";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import { JSONEditor } from 'vanilla-jsoneditor/standalone.js'
 
-function Sample() {
+function JsonEditor() {
 	const [data, setData] = useState(_.filter(_.values(mockData), o=> !o.isTemplate))
 	const [error, setError] = useState(false)
 	
-	const onChange = j => {
-		if (j.error) {
+	useEffect(()=>{
+		initEditor()
+	}, [])
+	
+	/**
+	 * 编辑schema
+	 * @param updatedContent
+	 * @param previousContent
+	 * @param contentErrors
+	 * @param patchResult
+	 */
+	const handleChange = (updatedContent, previousContent, { contentErrors, patchResult }) =>{
+		if (contentErrors) {
 			setError(true)
 			return
 		}
-		!_.isEmpty(j?.jsObject) && setData(j?.jsObject)
+		!_.isEmpty(updatedContent?.text) && setData(JSON.parse(updatedContent?.text))
 		if(error){
 			setError(false)
 		}
+		console.log('onChange', { updatedContent, previousContent, contentErrors, patchResult })
+		console.log(JSON.parse(updatedContent?.text))
+	}
+	
+	/**
+	 * 初始化编辑器
+	 */
+	const initEditor = () =>{
+		let content = {
+			text: undefined,
+			json: data
+		}
+		
+		const editor = new JSONEditor({
+			target: document.getElementById('jsoneditor'),
+			props: {
+				content: { json: data },
+				onChange:handleChange
+			}
+		})
 	}
 	
 	return (
 		<div className="sample">
 			<div className="sample-json">
-				<JSONInput
-					id='a_unique_id'
-					placeholder={data}
-					locale={locale}
-					height="100%"
-					width="100%"
-					onChange={onChange}
-				/>
+				<div id="jsoneditor" />
 			</div>
 			<div className="sample-form">
 				{
@@ -65,4 +89,4 @@ function Sample() {
 	)
 }
 
-export default Sample
+export default JsonEditor
