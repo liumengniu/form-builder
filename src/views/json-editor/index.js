@@ -51,6 +51,9 @@ function JsonEditor() {
 		const editor = new JSONEditor({
 			target: document.getElementById('jsoneditor'),
 			props: {
+				mode: 'text',
+				// mainMenuBar: false,
+				askToFormat: true,
 				content: { json: data },
 				onChange:handleChange
 			}
