@@ -41,6 +41,7 @@ const mockData = {
 		name: "",
 		defaultValue: "",
 		placeholder: "",
+		variant: "",
 	},
 	4: {
 		id: uuidV4(),
@@ -49,6 +50,8 @@ const mockData = {
 		name: "",
 		defaultValue: "",
 		placeholder: "",
+		step: "",
+		prefix: ''
 	},
 	5: {
 		id: uuidV4(),
@@ -81,6 +84,7 @@ const mockData = {
 		name: "",
 		defaultValue: "",
 		placeholder: "",
+		allowHalf: false,
 	},
 	9: {
 		id: uuidV4(),
@@ -89,6 +93,8 @@ const mockData = {
 		name: "",
 		defaultValue: "",
 		placeholder: "",
+		range: false,
+		inputNumber: true,
 	},
 	10: {
 		id: uuidV4(),
@@ -97,6 +103,8 @@ const mockData = {
 		name: "",
 		defaultValue: "",
 		placeholder: "",
+		checkedChildren: '',
+		unCheckedChildren: ''
 	},
 	11: {
 		id: uuidV4(),

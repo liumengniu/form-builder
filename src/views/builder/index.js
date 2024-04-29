@@ -20,7 +20,7 @@ import BasicComponent from "@comp/modules/BasicModule";
 import "./index.less"
 import mockData from "@/configs/mock";
 import JSONInput from 'react-json-editor-ajrm';
-import locale    from 'react-json-editor-ajrm/locale/en';
+import locale from 'react-json-editor-ajrm/locale/en';
 
 
 const items = [
@@ -49,7 +49,7 @@ function Builder() {
 	const [form] = Form.useForm();
 	// schema显示
 	const [open, setOpen] = useState(false);
-
+	
 	
 	/**
 	 * 元拖拽事件
@@ -139,7 +139,7 @@ function Builder() {
 	/**
 	 * 点击
 	 */
-	const handleItemClick = idx =>{
+	const handleItemClick = idx => {
 		setClickItemIdx(idx)
 		const values = _.cloneDeep(_.get(data, `${idx}`));
 		form.setFieldsValue({...values})
@@ -209,7 +209,7 @@ function Builder() {
 	/**
 	 * 复制item
 	 */
-	const copyItem = () =>{
+	const copyItem = () => {
 		if (!_.isNumber(clickItemIdx)) return
 		let lastItem = _.last(data);
 		setData([...data, lastItem])
@@ -229,7 +229,7 @@ function Builder() {
 	/**
 	 * 下移
 	 */
-	const moveDown = () =>{
+	const moveDown = () => {
 		if (!_.isNumber(clickItemIdx)) return
 		if (clickItemIdx === data.length - 1) return
 		let tarIdx = clickItemIdx + 1;
@@ -245,7 +245,7 @@ function Builder() {
 	const onValuesChange = (changedValues, allValues) => {
 		if (!_.isNumber(clickItemIdx)) return
 		let oldObj = _.get(data, `${clickItemIdx}`);
-		let finalObj = _.assign({},oldObj, changedValues);
+		let finalObj = _.assign({}, oldObj, changedValues);
 		_.set(data, `${clickItemIdx}`, finalObj);
 		setData([...data])
 	}
@@ -318,7 +318,9 @@ function Builder() {
 								{
 									data?.map((item, idx) => {
 										return (
-											<div key={idx} className={`${clickItemIdx === idx ? 'active' : ''} auto-form-questionnaire-wrapper-item`} draggable={true}
+											<div key={idx}
+											     className={`${clickItemIdx === idx ? 'active' : ''} auto-form-questionnaire-wrapper-item`}
+											     draggable={true}
 											     onDragStart={e => handleItemDragStart(e, idx, item)} onDragEnd={handleItemDragEnd}
 											     onDragEnter={() => handleItemDragEnter(idx)} onDrop={handleItemDrop}
 											     onClick={() => handleItemClick(idx)}>
@@ -341,10 +343,10 @@ function Builder() {
 							<FileTextOutlined onClick={copyItem}/>
 						</Tooltip>
 						<Tooltip placement="left" onClick={moveUp} title="上移">
-							<ArrowUpOutlined />
+							<ArrowUpOutlined/>
 						</Tooltip>
 						<Tooltip placement="left" onClick={moveDown} title="下移">
-							<ArrowDownOutlined />
+							<ArrowDownOutlined/>
 						</Tooltip>
 						<Tooltip placement="left" title="删除">
 							<DeleteOutlined onClick={removeItem}/>
@@ -371,7 +373,45 @@ function Builder() {
 							</Form.Item>
 							{
 								data?.[clickItemIdx]?.type === "select" && <Form.Item label="单选/多选" name="mode">
-									<Select options={[{label: "单选", value: "单选"}, {label: "多选", value: "multiple"}]}/>
+									<Select options={[{label: "单选", value: "单选"}, {label: "多选", value: "multiple"}, {
+										label: "标签",
+										value: "tags"
+									}]}/>
+								</Form.Item>
+							}
+							{
+								data?.[clickItemIdx]?.type === "input" && <Form.Item label="变体" name="variant">
+									<Input/>
+								</Form.Item>
+							}
+							{
+								data?.[clickItemIdx]?.type === "inputNumber" && <Form.Item label="高精度小数" name="step">
+									<Input/>
+								</Form.Item>
+							}
+							{
+								data?.[clickItemIdx]?.type === "inputNumber" && <Form.Item label="前缀" name="prefix">
+									<Input/>
+								</Form.Item>
+							}
+							{
+								data?.[clickItemIdx]?.type === "rate" && <Form.Item label="允许半星" name="allowHalf">
+									<Select options={[{label: "是", value: true}, {label: "否", value: false}]}/>
+								</Form.Item>
+							}
+							{
+								data?.[clickItemIdx]?.type === "slider" && <Form.Item label="是否双滑块" name="range">
+									<Select options={[{label: "是", value: true}, {label: "否", value: false}]}/>
+								</Form.Item>
+							}
+							{
+								data?.[clickItemIdx]?.type === "switch" && <Form.Item label="开启文字" name="checkedChildren">
+									<Input/>
+								</Form.Item>
+							}
+							{
+								data?.[clickItemIdx]?.type === "switch" && <Form.Item label="关闭文字" name="unCheckedChildren">
+									<Input/>
 								</Form.Item>
 							}
 							{
@@ -382,11 +422,11 @@ function Builder() {
 										{
 											key: '1',
 											label: '选项配置',
-											extra: <DownOutlined />,
+											extra: <DownOutlined/>,
 											children: <Form.List label="选项列表" name="options">
-												{(fields, { add, remove }) => (
+												{(fields, {add, remove}) => (
 													<>
-														{fields.map(({ key, name, ...restField }) => (
+														{fields.map(({key, name, ...restField}) => (
 															<Space
 																key={key}
 																style={{
@@ -405,7 +445,7 @@ function Builder() {
 																		},
 																	]}
 																>
-																	<Input placeholder="选项标题" />
+																	<Input placeholder="选项标题"/>
 																</Form.Item>
 																<Form.Item
 																	{...restField}
@@ -417,13 +457,13 @@ function Builder() {
 																		},
 																	]}
 																>
-																	<Input placeholder="选项值" />
+																	<Input placeholder="选项值"/>
 																</Form.Item>
-																<MinusCircleOutlined onClick={() => remove(name)} />
+																<MinusCircleOutlined onClick={() => remove(name)}/>
 															</Space>
 														))}
 														<Form.Item>
-															<Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+															<Button type="dashed" onClick={() => add()} block icon={<PlusOutlined/>}>
 																添加项
 															</Button>
 														</Form.Item>
@@ -436,15 +476,15 @@ function Builder() {
 							}
 						</Form>
 					</div>
-					
+				
 				</div>
 			</div>
-			<Drawer title="生成的schema" onClose={()=>setOpen(false)} open={open} size="large">
+			<Drawer title="生成的schema" onClose={() => setOpen(false)} open={open} size="large">
 				<JSONInput
-					id          = 'a_unique_id'
-					placeholder = { data }
-					locale      = { locale }
-					height= "100%"
+					id='a_unique_id'
+					placeholder={data}
+					locale={locale}
+					height="100%"
 					width="100%"
 				/>
 			</Drawer>
