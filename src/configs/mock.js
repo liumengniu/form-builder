@@ -145,7 +145,7 @@ const mockData = {
 	102:{
 		isTemplate: true,
 		id: uuidV4(),
-		type: 'loginForm',
+		type: 'userForm',
 		label: "个人信息",
 		formOptions: [
 			{id: uuidV4(), type: 'input', name: 'name', label: "用户名", defaultValue: "请输入用户名"},
@@ -166,7 +166,27 @@ const mockData = {
 			{id: uuidV4(), type: 'input', label: "电话号码", name: "phone", defaultValue: "", placeholder: "",},
 			{id: uuidV4(), type: 'textarea', label: "兴趣爱好", name: "hobby", defaultValue: "", placeholder: "",},
 		]
-	}
+	},
+	103: {
+		isTemplate: true,
+		id: uuidV4(),
+		type: 'listForm',
+		label: "个人信息",
+		formOptions: [
+			{id: uuidV4(),
+				type: 'radio',
+				label: "性别",
+				options: [
+					{id: 1, label: '男', value: '男'},
+					{id: 2, label: '女', value: '女'},
+					{id: 3, label: '其他', value: '其他'}
+				],
+				name: "sex",
+				defaultValue: "",
+				placeholder: "",
+			},
+		]
+	},
 }
 
 export default mockData

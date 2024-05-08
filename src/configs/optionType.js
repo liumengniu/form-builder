@@ -23,6 +23,7 @@ const optionList = {
   commonlyUsed: [
     { id: 101, label: '登录' },
     { id: 102, label: '个人信息' },
+	  { id: 103, label: '列表式表单' },
   ],
   builtInTemplates: [
     // { id: 201, label: '年收入' },
